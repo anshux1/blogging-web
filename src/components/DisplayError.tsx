@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { toast } from "sonner";
 
-export default function BlogDisplay({ error }) {
+export default function BlogDisplay({ error }: { error: string }) {
   // This effect will run when the component mounts and the error prop is passed
   useEffect(() => {
     if (error) {
