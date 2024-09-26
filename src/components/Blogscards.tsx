@@ -103,7 +103,7 @@ function Card({ data }: { data: BlogType }){
         </div>
         <span className="font-semibold">{data.category}</span>
       </div>
-      <Link href={`/blog/${data.id}`} className="text-xl font-semibold mb-2">{data.title.slice(0, 44)}. . .</Link>
+      <Link href={`/blog/${data.id}`} className="text-xl font-semibold mb-2">{data.title.slice(0, 44)}</Link>
       
     </article>   
   )

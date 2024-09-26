@@ -15,9 +15,10 @@ import {
 import Link from "next/link";
 import { DropdownMenuItemComp } from "@/components/DropdownMenuItemComp"
 import { Skeleton } from "./ui/skeleton";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 export function Navbar(){
   const router = useRouter();
+  const pathname = usePathname();
   const { data: session , status} = useSession();
   if(status === "loading"){
     return <div className="h-16 w-full">
@@ -36,13 +37,22 @@ export function Navbar(){
   return (
     <div className="h-16 w-full">
       <div className="max-w-7xl h-full px-10 flex justify-between mx-auto">
-      <div
-        onClick={() => router.push('/')}
-        className="flex items-center cursor-pointer gap-2"
-      >
-        <Blocks className="size-8" />
-        <h1 className="text-2xl font-semibold">BlogVibe</h1>
-      </div>
+        <div className="flex gap-4 items-center">
+          <div
+            onClick={() => router.push('/')}
+            className="flex items-center cursor-pointer gap-2"
+          >
+            <Blocks className="size-8" />
+            <h1 className="text-2xl font-semibold">BlogVibe</h1>
+          </div>
+          <Link href="/create-blog"
+            className={`${pathname === "/create-blog" ? "font-medium" : "font-normal"} hidden md:block`}
+          >
+            Create Blog
+          </Link>
+        </div>
+
+        
         { session ? ( 
           <div className="flex items-center">
             <DropdownMenu>
@@ -56,6 +66,11 @@ export function Navbar(){
                   onclick={() => router.push('/dashboard')}
                   icon={User}
                   text="Profile"
+                />
+                <DropdownMenuItemComp
+                  onclick={() => router.push('/create-blog')}
+                  icon={User}
+                  text="Create Blog"
                 />
                 <DropdownMenuItemComp 
                   icon={LogOut}
