@@ -25,7 +25,6 @@ model User {
 model Blogs {
   id            String @id @default(cuid())
   title         String
-  mainImg       String
   thumbnailImg  String
   content       String
   published     Boolean @default(false)
