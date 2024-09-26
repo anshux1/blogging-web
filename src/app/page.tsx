@@ -3,6 +3,8 @@ import { BlogsCards } from "@/components/Blogscards";
 import BlogDisplay from "@/components/DisplayError";
 import HeroSection from "@/components/HeroSection";
 
+export const dynamic = "force-dynamic"
+
 export default async function Home() {
   const { allBlogs, success, message } = await getAllBLog();
   if(!success || !allBlogs){
