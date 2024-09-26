@@ -1,12 +1,16 @@
 import { getAllBLog } from "@/actions/blogs";
 import { BlogsCards } from "@/components/Blogscards";
+import BlogDisplay from "@/components/DisplayError";
 import HeroSection from "@/components/HeroSection";
-import { toast } from "sonner";
 
 export default async function Home() {
   const { allBlogs, success, message } = await getAllBLog();
   if(!success || !allBlogs){
-    return toast.error(message);
+    return (
+      <div>
+        <BlogDisplay error={message} />
+      </div>
+    );
   }
   console.log(allBlogs)
   const totalBlogs = allBlogs?.length - 1;
